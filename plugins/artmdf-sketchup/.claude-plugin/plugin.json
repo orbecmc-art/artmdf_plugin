@@ -1,0 +1,39 @@
+{
+  "name": "artmdf-sketchup",
+  "displayName": "Art MDF · SketchUp + UpMobb",
+  "version": "1.0.0",
+  "description": "Modelagem de móveis planejados no SketchUp com UpMobb, pelo Claude Code: ponte com o SketchUp aberto (ou controle pela tela), modelagem a partir da biblioteca, personalização de módulos, exportação para produção, documentação para o cliente e rotina que evolui o próprio plugin com o que a equipe aprende.",
+  "author": {
+    "name": "Orbe Assessoria Digital",
+    "url": "https://orbeassessoria.com.br"
+  },
+  "homepage": "https://orbeassessoria.com.br",
+  "keywords": [
+    "sketchup",
+    "upmobb",
+    "marcenaria",
+    "moveis-planejados",
+    "mdf"
+  ],
+  "userConfig": {
+    "pasta_trabalho": {
+      "type": "directory",
+      "title": "Pasta de trabalho",
+      "description": "Onde ficam os projetos (Projeto <Nome>\\) e o conhecimento vivo do plugin (_claude\\).",
+      "default": "C:/Users/Usuario/Desktop/Sketup Claude",
+      "required": true
+    },
+    "pasta_exportacao": {
+      "type": "directory",
+      "title": "Pasta de exportação do UpMobb",
+      "description": "Onde o UpMobb grava usinagem (.scx) e plano de corte.",
+      "default": "C:/Users/Usuario/Desktop/EXPORTAÇAO USINAGEM"
+    },
+    "repo_plugin": {
+      "type": "directory",
+      "title": "Clone do repositório do plugin (opcional)",
+      "description": "Pasta local com o git do marketplace. Usada pela skill evoluir-plugin para publicar novas versões. Deixe vazio se esta máquina não publica."
+    }
+  },
+  "repository": "https://github.com/orbecmc-art/artmdf_plugin"
+}

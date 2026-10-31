@@ -1,0 +1,17 @@
+{
+  "name": "artmdf",
+  "description": "Plugins do Claude Code da Art MDF, mantidos pela Orbe Assessoria Digital.",
+  "owner": {
+    "name": "Orbe Assessoria Digital",
+    "email": "orbe.cmc@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "artmdf-sketchup",
+      "source": "./plugins/artmdf-sketchup",
+      "description": "Modelagem de móveis planejados no SketchUp com UpMobb: ponte, modelagem, personalização de módulos, produção, documentação e evolução contínua.",
+      "category": "design",
+      "tags": ["sketchup", "upmobb", "marcenaria"]
+    }
+  ]
+}
