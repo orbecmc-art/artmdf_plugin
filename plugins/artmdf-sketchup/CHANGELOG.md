@@ -1,5 +1,10 @@
 # Changelog · artmdf-sketchup
 
+## 1.0.1 · 31/10/2026
+
+- Rotina semanal no Windows: `scripts/agendar-rotina.ps1` agenda a revisão do plugin (só propõe, grava relatório em `_claude/relatorios`). A skill evoluir-plugin ganhou o modo revisão.
+- Repositório oficial: orbecmc-art/artmdf_plugin.
+
 ## 1.0.0 · 31/10/2026
 
 Primeira versão.

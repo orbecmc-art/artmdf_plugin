@@ -99,7 +99,10 @@ Em `_claude/scripts/` e nos aprendizados, procure procedimentos que já foram fe
 ## Automático
 
 - O início de cada sessão do Claude Code informa aprendizados pendentes e fontes vencidas. Quando aparecer, ofereça rodar esta skill no fim da tarefa atual (não interrompa o trabalho do usuário).
-- Revisão mensal agendada: se o usuário quiser, sugira criar uma tarefa agendada no app do Claude ("todo dia 1º, rodar evoluir-plugin: revisar fontes e consolidar aprendizados, só propor diffs").
+- Rotina semanal no Windows: quando o usuário pedir ("cria a rotina semanal do plugin"), rode
+  `powershell -NoProfile -ExecutionPolicy Bypass -File "${CLAUDE_PLUGIN_ROOT}/scripts/agendar-rotina.ps1" -Pasta "${user_config.pasta_trabalho}" -Dia Monday -Hora 08:00`
+  e depois `... agendar-rotina.ps1 -Testar`. A rotina roda sem interação e **só propõe**: grava `_claude/relatorios/revisao-AAAA-MM-DD.md`. Quando o usuário pedir "revisa o relatório da semana", leia o relatório mais recente e siga os passos B a D com aprovação item a item. Remover: `-Remover`.
+- **Modo revisão** (pedido vindo da rotina, sem ninguém na conversa): faça B e C só até a proposta; não altere `_claude/` além do relatório e de `fontes-estado.json`, não publique, não rode git.
 - As outras máquinas recebem versões novas pela atualização automática do marketplace (configurada na instalação).
 
 ## Entrega

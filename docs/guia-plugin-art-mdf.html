@@ -1,0 +1,533 @@
+<title>Guia do Plugin Art MDF</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap">
+<style>
+/* Layout: guia de consulta. Capa em bloco verde-orbe com a Órbita sangrando; índice fixo à esquerda no desktop; coluna de leitura de 70 caracteres; seções separadas por linha, não por sombra. Tokens do sistema Orbe Assessoria. */
+:root {
+  --verde-orbe: #0D5C4F;
+  --fundo: #F2F4EF;
+  --superficie: #FFFFFF;
+  --superficie-2: #E6ECE7;
+  --linha: #D3DCD5;
+  --linha-forte: #6E857D;
+  --tinta: #0B2622;
+  --tinta-suave: #4A5F59;
+  --marca: #0D5C4F;
+  --on-marca: #FFFFFF;
+  --marca-texto: #0D5C4F;
+  --marca-suave: #CFE3D8;
+  --sinal: #F2A33A;
+  --on-sinal: #062520;
+  --sinal-texto: #8A5300;
+  --sinal-suave: #FCEBD2;
+  --risco: #B42318;
+  --risco-suave: #FDE7E4;
+  --foco: #0D5C4F;
+  --codigo-fundo: #062520;
+  --codigo-tinta: #EDF2EE;
+  --display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --texto: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", "Consolas", "SFMono-Regular", monospace;
+  --espaco-2: 8px; --espaco-3: 12px; --espaco-4: 16px; --espaco-5: 24px; --espaco-6: 32px; --espaco-7: 48px; --espaco-8: 64px;
+  --raio-p: 6px; --raio-m: 14px; --raio-g: 28px; --raio-pilula: 999px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fundo: #062520; --superficie: #0C3730; --superficie-2: #0A2F29; --linha: #1F4A42; --linha-forte: #6A958A;
+    --tinta: #EDF2EE; --tinta-suave: #A6BCB4; --marca-texto: #7FD1B6; --marca-suave: #12453C;
+    --sinal-texto: #F2A33A; --sinal-suave: #3A2A0E; --risco: #FF8A7A; --risco-suave: #3D1512; --foco: #F2A33A;
+    --codigo-fundo: #031512; --codigo-tinta: #EDF2EE;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --fundo: #062520; --superficie: #0C3730; --superficie-2: #0A2F29; --linha: #1F4A42; --linha-forte: #6A958A;
+  --tinta: #EDF2EE; --tinta-suave: #A6BCB4; --marca-texto: #7FD1B6; --marca-suave: #12453C;
+  --sinal-texto: #F2A33A; --sinal-suave: #3A2A0E; --risco: #FF8A7A; --risco-suave: #3D1512; --foco: #F2A33A;
+  --codigo-fundo: #031512; --codigo-tinta: #EDF2EE;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--fundo); color: var(--tinta); font-family: var(--texto); font-size: 16px; line-height: 26px; margin: 0; -webkit-font-smoothing: antialiased; }
+a { color: var(--marca-texto); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; }
+.pagina { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: var(--espaco-5) var(--espaco-8); }
+
+/* ---------- capa ---------- */
+.capa { position: relative; overflow: hidden; background: var(--verde-orbe); color: var(--on-marca); border-radius: var(--raio-g); padding: var(--espaco-8) clamp(24px, 6vw, 64px); }
+.capa .orbita { position: absolute; width: min(620px, 90vw); right: -170px; top: -150px; opacity: .22; pointer-events: none; }
+.capa .logo { height: 34px; width: auto; display: block; position: relative; }
+.capa .olho { position: relative; margin: var(--espaco-7) 0 var(--espaco-3); font-size: 15px; font-weight: 600; color: #CFE3D8; }
+.capa h1 { position: relative; font-family: var(--display); font-weight: 800; font-size: clamp(44px, 8vw, 88px); line-height: .92; letter-spacing: -0.035em; font-variation-settings: "opsz" 96; margin: 0; max-width: 11ch; text-wrap: balance; }
+.capa .sub { position: relative; font-size: 19px; line-height: 30px; max-width: 34em; margin: var(--espaco-5) 0 0; color: #E3EFE9; }
+.capa .meta { position: relative; display: flex; flex-wrap: wrap; gap: var(--espaco-2) var(--espaco-6); margin-top: var(--espaco-7); padding-top: var(--espaco-4); border-top: 1px solid rgba(255,255,255,.25); font-size: 14px; color: #E3EFE9; }
+.capa .meta b { color: #FFFFFF; font-weight: 600; }
+
+/* ---------- corpo com índice ---------- */
+.grade { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--espaco-7); margin-top: var(--espaco-7); }
+nav.indice { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; font-size: 14px; line-height: 20px; }
+nav.indice p { font-weight: 600; color: var(--tinta-suave); margin: 0 0 var(--espaco-3); font-size: 13px; }
+nav.indice ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; counter-reset: idx; }
+nav.indice li { counter-increment: idx; }
+nav.indice a { display: flex; gap: 10px; padding: 6px 10px; border-radius: var(--raio-p); color: var(--tinta); text-decoration: none; }
+nav.indice a::before { content: counter(idx, decimal-leading-zero); color: var(--tinta-suave); font-variant-numeric: tabular-nums; }
+nav.indice a:hover { background: var(--superficie-2); }
+main { min-width: 0; max-width: 760px; }
+
+section { padding-block: var(--espaco-7); border-top: 1px solid var(--linha); scroll-margin-top: 24px; }
+section:first-child { border-top: 0; padding-top: 0; }
+h2 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 4.6vw, 44px); line-height: 1.02; letter-spacing: -0.03em; font-variation-settings: "opsz" 60; margin: 0 0 var(--espaco-4); text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; margin: var(--espaco-6) 0 var(--espaco-3); }
+p { margin: 0 0 var(--espaco-4); max-width: 70ch; }
+.abre { font-size: 19px; line-height: 30px; color: var(--tinta); }
+.nota { font-size: 14px; line-height: 22px; color: var(--tinta-suave); }
+code { font-family: var(--mono); font-size: .9em; background: var(--superficie-2); padding: 1px 6px; border-radius: 4px; overflow-wrap: anywhere; }
+
+/* números do resumo */
+.numeros { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--espaco-5); margin: var(--espaco-6) 0 var(--espaco-2); }
+.numeros div { border-top: 2px solid var(--marca); padding-top: var(--espaco-3); }
+.numeros strong { display: block; font-family: var(--display); font-weight: 800; font-size: 60px; line-height: 1; letter-spacing: -0.03em; font-variation-settings: "opsz" 96, "wdth" 88; font-variant-numeric: tabular-nums; color: var(--marca-texto); }
+.numeros span { display: block; font-size: 14px; line-height: 20px; color: var(--tinta-suave); margin-top: var(--espaco-2); }
+
+/* passos */
+ol.passos { list-style: none; margin: var(--espaco-5) 0 0; padding: 0; counter-reset: passo; display: grid; gap: var(--espaco-5); }
+ol.passos > li { counter-increment: passo; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: var(--espaco-4); }
+ol.passos > li::before { content: counter(passo); width: 40px; height: 40px; border-radius: var(--raio-pilula); border: 1.5px solid var(--linha-forte); display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums; color: var(--marca-texto); }
+ol.passos h4 { margin: 8px 0 var(--espaco-2); font-size: 17px; line-height: 24px; font-weight: 700; }
+ol.passos p { margin-bottom: var(--espaco-3); }
+
+/* comandos */
+.cmd { position: relative; background: var(--codigo-fundo); color: var(--codigo-tinta); border-radius: var(--raio-m); margin: var(--espaco-3) 0 var(--espaco-4); }
+.cmd pre { margin: 0; padding: 16px 92px 16px 18px; overflow-x: auto; font-family: var(--mono); font-size: 13.5px; line-height: 22px; white-space: pre; }
+.cmd button { position: absolute; top: 10px; right: 10px; font: 600 13px/18px var(--texto); color: var(--codigo-tinta); background: transparent; border: 1.5px solid #3E6B62; border-radius: var(--raio-pilula); padding: 5px 12px; cursor: pointer; }
+.cmd button:hover { border-color: #7FD1B6; }
+.cmd button.ok { border-color: #7FD1B6; color: #7FD1B6; }
+
+/* destaque âmbar: o único da peça */
+.comece { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--espaco-4); align-items: start; background: var(--sinal-suave); border-radius: var(--raio-m); padding: var(--espaco-5); margin-top: var(--espaco-5); }
+.comece .selo { background: var(--sinal); color: var(--on-sinal); font-weight: 700; font-size: 13px; line-height: 18px; padding: 6px 12px; border-radius: var(--raio-pilula); white-space: nowrap; }
+.comece p { margin: 0; }
+
+/* tabelas */
+.tabela { overflow-x: auto; margin: var(--espaco-4) 0 var(--espaco-5); border: 1px solid var(--linha); border-radius: var(--raio-m); background: var(--superficie); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; line-height: 22px; min-width: 560px; }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--linha); }
+th { font-size: 13px; line-height: 18px; font-weight: 600; color: var(--tinta-suave); background: var(--superficie-2); }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; }
+td.fala { font-style: italic; color: var(--tinta); }
+
+/* árvore de pastas */
+.arvore { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio-m); padding: var(--espaco-5); overflow-x: auto; margin: var(--espaco-4) 0 var(--espaco-5); }
+.arvore pre { margin: 0; font-family: var(--mono); font-size: 13.5px; line-height: 24px; white-space: pre; color: var(--tinta); }
+.arvore .c { color: var(--tinta-suave); }
+.arvore .p { color: var(--marca-texto); font-weight: 600; }
+
+/* lista de regras */
+ul.regras { list-style: none; margin: var(--espaco-4) 0 0; padding: 0; display: grid; gap: 0; }
+ul.regras li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: var(--espaco-3); padding: var(--espaco-3) 0; border-bottom: 1px solid var(--linha); }
+ul.regras li::before { content: ""; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--marca-texto); margin-top: 7px; }
+
+.etiqueta { display: inline-block; font-size: 12px; line-height: 16px; font-weight: 600; padding: 3px 10px; border-radius: var(--raio-pilula); background: var(--marca-suave); color: var(--marca-texto); white-space: nowrap; }
+.etiqueta.alerta { background: var(--risco-suave); color: var(--risco); }
+
+.duas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--espaco-5); margin-top: var(--espaco-4); }
+.bloco { border: 1px solid var(--linha); border-radius: var(--raio-m); background: var(--superficie); padding: var(--espaco-5); min-width: 0; }
+.bloco h4 { margin: 0 0 var(--espaco-2); font-size: 17px; line-height: 24px; }
+.bloco p:last-child { margin-bottom: 0; }
+
+footer.assina { margin-top: var(--espaco-7); padding-top: var(--espaco-6); border-top: 1px solid var(--linha); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--espaco-4); font-size: 14px; color: var(--tinta-suave); }
+footer.assina img { height: 26px; width: auto; }
+.logo-claro { display: block; }
+.logo-escuro { display: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .logo-claro { display: none; } :root:not([data-theme="light"]) .logo-escuro { display: block; } }
+:root[data-theme="dark"] .logo-claro { display: none; }
+:root[data-theme="dark"] .logo-escuro { display: block; }
+
+@media (max-width: 900px) {
+  .grade { grid-template-columns: minmax(0, 1fr); gap: var(--espaco-5); }
+  nav.indice { position: static; border: 1px solid var(--linha); border-radius: var(--raio-m); padding: var(--espaco-4); background: var(--superficie); }
+  nav.indice ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .numeros { grid-template-columns: minmax(0, 1fr); gap: var(--espaco-4); }
+  .duas { grid-template-columns: minmax(0, 1fr); }
+  nav.indice ol { grid-template-columns: minmax(0, 1fr); }
+  .comece { grid-template-columns: minmax(0, 1fr); }
+  .capa .orbita { right: -220px; top: -120px; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="pagina">
+
+<header class="capa">
+  <img class="orbita" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDEyMDAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iw5NyYml0YSBkZSA1MiBzZWd1bmRhcyI+PHRpdGxlPsOTcmJpdGEgZGUgNTIgc2VndW5kYXM8L3RpdGxlPjxsaW5lIHgxPSI2MDAuMCIgeTE9IjE1MC4wIiB4Mj0iNjAwLjAiIHkyPSI5Ni4wIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTQuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGxpbmUgeDE9IjY1NC4yIiB5MT0iMTUzLjMiIHgyPSI2NjAuOCIgeTI9Ijk5LjciIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iNzA3LjciIHkxPSIxNjMuMSIgeDI9IjcyMC42IiB5Mj0iMTEwLjYiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iNzU5LjYiIHkxPSIxNzkuMiIgeDI9Ijc3OC43IiB5Mj0iMTI4LjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iODA5LjEiIHkxPSIyMDEuNSIgeDI9IjgzNC4yIiB5Mj0iMTUzLjciIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iODU1LjYiIHkxPSIyMjkuNyIgeDI9Ijg4Ni4zIiB5Mj0iMTg1LjIiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iODk4LjQiIHkxPSIyNjMuMiIgeDI9IjkzNC4yIiB5Mj0iMjIyLjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iOTM2LjgiIHkxPSIzMDEuNiIgeDI9Ijk3Ny4yIiB5Mj0iMjY1LjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iOTcwLjMiIHkxPSIzNDQuNCIgeDI9IjEwMTQuOCIgeTI9IjMxMy43IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTQuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGxpbmUgeDE9Ijk5OC41IiB5MT0iMzkwLjkiIHgyPSIxMDQ2LjMiIHkyPSIzNjUuOCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjE0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxsaW5lIHgxPSIxMDIwLjgiIHkxPSI0NDAuNCIgeDI9IjEwNzEuMiIgeTI9IjQyMS4zIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTQuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGxpbmUgeDE9IjEwMzYuOSIgeTE9IjQ5Mi4zIiB4Mj0iMTA4OS40IiB5Mj0iNDc5LjQiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMTA0Ni43IiB5MT0iNTQ1LjgiIHgyPSIxMTAwLjMiIHkyPSI1MzkuMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjE0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxsaW5lIHgxPSIxMDUwLjAiIHkxPSI2MDAuMCIgeDI9IjExMDQuMCIgeTI9IjYwMC4wIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTQuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGxpbmUgeDE9IjEwNDYuNyIgeTE9IjY1NC4yIiB4Mj0iMTEwMC4zIiB5Mj0iNjYwLjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMTAzNi45IiB5MT0iNzA3LjciIHgyPSIxMDg5LjQiIHkyPSI3MjAuNiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjE0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxsaW5lIHgxPSIxMDIwLjgiIHkxPSI3NTkuNiIgeDI9IjEwNzEuMiIgeTI9Ijc3OC43IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTQuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGxpbmUgeDE9Ijk5OC41IiB5MT0iODA5LjEiIHgyPSIxMDQ2LjMiIHkyPSI4MzQuMiIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjE0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxsaW5lIHgxPSI5NzAuMyIgeTE9Ijg1NS42IiB4Mj0iMTAxNC44IiB5Mj0iODg2LjMiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iOTM2LjgiIHkxPSI4OTguNCIgeDI9Ijk3Ny4yIiB5Mj0iOTM0LjIiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iODk4LjQiIHkxPSI5MzYuOCIgeDI9IjkzNC4yIiB5Mj0iOTc3LjIiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iODU1LjYiIHkxPSI5NzAuMyIgeDI9Ijg4Ni4zIiB5Mj0iMTAxNC44IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTQuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGxpbmUgeDE9IjgwOS4xIiB5MT0iOTk4LjUiIHgyPSI4MzQuMiIgeTI9IjEwNDYuMyIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjE0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxsaW5lIHgxPSI3NTkuNiIgeTE9IjEwMjAuOCIgeDI9Ijc3OC43IiB5Mj0iMTA3MS4yIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTQuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGxpbmUgeDE9IjcwNy43IiB5MT0iMTAzNi45IiB4Mj0iNzIwLjYiIHkyPSIxMDg5LjQiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iNjU0LjIiIHkxPSIxMDQ2LjciIHgyPSI2NjAuOCIgeTI9IjExMDAuMyIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjE0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxsaW5lIHgxPSI2MDAuMCIgeTE9IjEwNTAuMCIgeDI9IjYwMC4wIiB5Mj0iMTEwNC4wIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTQuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGxpbmUgeDE9IjU0NS44IiB5MT0iMTA0Ni43IiB4Mj0iNTM5LjIiIHkyPSIxMTAwLjMiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iNDkyLjMiIHkxPSIxMDM2LjkiIHgyPSI0NzkuNCIgeTI9IjEwODkuNCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjE0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxsaW5lIHgxPSI0NDAuNCIgeTE9IjEwMjAuOCIgeDI9IjQyMS4zIiB5Mj0iMTA3MS4yIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTQuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGxpbmUgeDE9IjM5MC45IiB5MT0iOTk4LjUiIHgyPSIzNjUuOCIgeTI9IjEwNDYuMyIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjE0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxsaW5lIHgxPSIzNDQuNCIgeTE9Ijk3MC4zIiB4Mj0iMzEzLjciIHkyPSIxMDE0LjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMzAxLjYiIHkxPSI5MzYuOCIgeDI9IjI2NS44IiB5Mj0iOTc3LjIiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMjYzLjIiIHkxPSI4OTguNCIgeDI9IjIyMi44IiB5Mj0iOTM0LjIiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMjI5LjciIHkxPSI4NTUuNiIgeDI9IjE4NS4yIiB5Mj0iODg2LjMiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMjAxLjUiIHkxPSI4MDkuMSIgeDI9IjE1My43IiB5Mj0iODM0LjIiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMTc5LjIiIHkxPSI3NTkuNiIgeDI9IjEyOC44IiB5Mj0iNzc4LjciIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMTYzLjEiIHkxPSI3MDcuNyIgeDI9IjExMC42IiB5Mj0iNzIwLjYiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMTUzLjMiIHkxPSI2NTQuMiIgeDI9Ijk5LjciIHkyPSI2NjAuOCIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjE0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjxsaW5lIHgxPSIxNTAuMCIgeTE9IjYwMC4wIiB4Mj0iOTYuMCIgeTI9IjYwMC4wIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMTQuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGxpbmUgeDE9IjE1My4zIiB5MT0iNTQ1LjgiIHgyPSI5OS43IiB5Mj0iNTM5LjIiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMTYzLjEiIHkxPSI0OTIuMyIgeDI9IjExMC42IiB5Mj0iNDc5LjQiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMTc5LjIiIHkxPSI0NDAuNCIgeDI9IjEyOC44IiB5Mj0iNDIxLjMiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMjAxLjUiIHkxPSIzOTAuOSIgeDI9IjE1My43IiB5Mj0iMzY1LjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMjI5LjciIHkxPSIzNDQuNCIgeDI9IjE4NS4yIiB5Mj0iMzEzLjciIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMjYzLjIiIHkxPSIzMDEuNiIgeDI9IjIyMi44IiB5Mj0iMjY1LjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMzAxLjYiIHkxPSIyNjMuMiIgeDI9IjI2NS44IiB5Mj0iMjIyLjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iMzQ0LjQiIHkxPSIyMjkuNyIgeDI9IjMxMy43IiB5Mj0iMTg1LjIiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iNDQwLjQiIHkxPSIxNzkuMiIgeDI9IjQyMS4zIiB5Mj0iMTI4LjgiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iNDkyLjMiIHkxPSIxNjMuMSIgeDI9IjQ3OS40IiB5Mj0iMTEwLjYiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxNC40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48bGluZSB4MT0iNTQ1LjgiIHkxPSIxNTMuMyIgeDI9IjUzOS4yIiB5Mj0iOTkuNyIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjE0LjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9saW5lPjwvc3ZnPg==" alt="">
+  <img class="logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii03Ni4zIC03OTUuOCAyMjM4LjAgOTEwLjUiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iT3JiZSI+PHRpdGxlPk9yYmU8L3RpdGxlPjxwYXRoIGQ9Ik0yODYuOTUgLTUzNC40MyBBMjcyLjAwIDI3Mi4wMCAwIDEgMSA2NS44NiAtNDA2Ljc4IEExMjkuOTIgMTI5LjkyIDAgMCAwIDE0OS40OCAtMzI1Ljc0IEExNjAuMDAgMTYwLjAwIDAgMSAwIDMxNS4zMyAtNDIxLjQ5IEExMjkuOTIgMTI5LjkyIDAgMCAwIDI4Ni45NSAtNTM0LjQzIFoiIGZpbGw9IiNGRkZGRkYiPjwvcGF0aD48cGF0aCBkPSJNODcuNzAgLTQ0OS42NiBhMTAwLjgwIDEwMC44MCAwIDEgMCAyMDEuNjAgMCBhMTAwLjgwIDEwMC44MCAwIDEgMCAtMjAxLjYwIDAgWiIgZmlsbD0iI0YyQTMzQSI+PC9wYXRoPjxwYXRoIGQ9Ik02MzEuNSAwLjBWLTI3Ni4wTDYzMC41IC01MjUuMEg3NTYuNUw3NTMuNSAtMzA3LjBINzYxLjVRNzY3LjUgLTM5Mi4wIDc4NS41IC00NDIuNVE4MDMuNSAtNDkzLjAgODMxLjAgLTUxNS4wUTg1OC41IC01MzcuMCA4OTMuNSAtNTM3LjBROTEwLjUgLTUzNy4wIDkyOS4wIC01MzIuNVE5NDcuNSAtNTI4LjAgOTY2LjUgLTUxOC4wTDk1OC41IC0zNTkuMFE5MzguNSAtMzcwLjAgOTE4LjUgLTM3NS41UTg5OC41IC0zODEuMCA4ODEuNSAtMzgxLjBRODQ3LjUgLTM4MS4wIDgyMy41IC0zNjAuMFE3OTkuNSAtMzM5LjAgNzg3LjAgLTI5OC41UTc3NC41IC0yNTguMCA3NzQuNSAtMjAwLjBWMC4wWiBNMTMyMC41IDE0LjBRMTI3NC41IDE0LjAgMTI0MC4wIC02LjVRMTIwNS41IC0yNy4wIDExODIuNSAtNjcuMFExMTU5LjUgLTEwNy4wIDExNDguNSAtMTY2LjBIMTE0MS41TDExNDMuNSAwLjBIMTAxNi41TDEwMTcuNSAtMTk5LjBMMTAxNi41IC02OTUuMEgxMTYxLjVWLTU0NS4wUTExNjEuNSAtNTE4LjAgMTE1OS4wIC00ODYuMFExMTU2LjUgLTQ1NC4wIDExNTIuMCAtNDE5LjVRMTE0Ny41IC0zODUuMCAxMTQxLjUgLTM0OC4wSDExNTAuNVExMTU5LjUgLTQxMy4wIDExODIuNSAtNDU1LjVRMTIwNS41IC00OTguMCAxMjQyLjAgLTUxOC41UTEyNzguNSAtNTM5LjAgMTMyNi41IC01MzkuMFExMzg1LjUgLTUzOS4wIDE0MjkuNSAtNTA5LjBRMTQ3My41IC00NzkuMCAxNDk3LjUgLTQxOS4wUTE1MjEuNSAtMzU5LjAgMTUyMS41IC0yNjguMFExNTIxLjUgLTE3MS4wIDE0OTUuMCAtMTA5LjBRMTQ2OC41IC00Ny4wIDE0MjIuNSAtMTYuNVExMzc2LjUgMTQuMCAxMzIwLjUgMTQuMFpNMTI3Mi41IC0xMDMuMFExMzA1LjUgLTEwMy4wIDEzMjguNSAtMTIzLjVRMTM1MS41IC0xNDQuMCAxMzYzLjUgLTE3OS4wUTEzNzUuNSAtMjE0LjAgMTM3NS41IC0yNTcuMFExMzc1LjUgLTMwMi4wIDEzNjQuMCAtMzM4LjBRMTM1Mi41IC0zNzQuMCAxMzI5LjUgLTM5NS41UTEzMDYuNSAtNDE3LjAgMTI3MS41IC00MTcuMFExMjUzLjUgLTQxNy4wIDEyMzYuMCAtNDEwLjBRMTIxOC41IC00MDMuMCAxMjA1LjAgLTM4OS41UTExOTEuNSAtMzc2LjAgMTE4MS41IC0zNTcuMFExMTcxLjUgLTMzOC4wIDExNjYuMCAtMzE0LjVRMTE2MC41IC0yOTEuMCAxMTYwLjUgLTI2NC4wVi0yNTcuMFExMTYwLjUgLTIyMy4wIDExNjkuMCAtMTk0LjVRMTE3Ny41IC0xNjYuMCAxMTkyLjUgLTE0NS41UTEyMDcuNSAtMTI1LjAgMTIyOC4wIC0xMTQuMFExMjQ4LjUgLTEwMy4wIDEyNzIuNSAtMTAzLjBaIE0xODMxLjUgMTQuMFExNzYwLjUgMTQuMCAxNzExLjAgLTcuMFExNjYxLjUgLTI4LjAgMTYzMC41IC02NS4wUTE1OTkuNSAtMTAyLjAgMTU4NS41IC0xNTAuMFExNTcxLjUgLTE5OC4wIDE1NzEuNSAtMjUzLjBRMTU3MS41IC0zMTAuMCAxNTg2LjAgLTM2MS41UTE2MDAuNSAtNDEzLjAgMTYzMC41IC00NTMuMFExNjYwLjUgLTQ5My4wIDE3MDguNSAtNTE2LjBRMTc1Ni41IC01MzkuMCAxODIxLjUgLTUzOS4wUTE4ODYuNSAtNTM5LjAgMTkzMy41IC01MTYuNVExOTgwLjUgLTQ5NC4wIDIwMDkuMCAtNDU0LjBRMjAzNy41IC00MTQuMCAyMDQ3LjAgLTM2MC41UTIwNTYuNSAtMzA3LjAgMjA0Ny41IC0yNDMuMEwxNjYwLjUgLTIzNy4wVi0zMTguMEwxOTM3LjUgLTMyNC4wTDE5MTcuNSAtMjc3LjBRMTkyMi41IC0zMjMuMCAxOTEzLjUgLTM1Ni4wUTE5MDQuNSAtMzg5LjAgMTg4Mi4wIC00MDYuNVExODU5LjUgLTQyNC4wIDE4MjEuNSAtNDI0LjBRMTc4MS41IC00MjQuMCAxNzU3LjAgLTQwMy41UTE3MzIuNSAtMzgzLjAgMTcyMS41IC0zNDYuMFExNzEwLjUgLTMwOS4wIDE3MTAuNSAtMjYwLjBRMTcxMC41IC0xNzUuMCAxNzQxLjAgLTEzNS4wUTE3NzEuNSAtOTUuMCAxODMyLjUgLTk1LjBRMTg2MC41IC05NS4wIDE4NzkuMCAtMTAyLjVRMTg5Ny41IC0xMTAuMCAxOTA5LjAgLTEyMy41UTE5MjAuNSAtMTM3LjAgMTkyNS4wIC0xNTUuMFExOTI5LjUgLTE3My4wIDE5MjguNSAtMTk0LjBMMjA2MC41IC0xODYuMFEyMDYyLjUgLTE1MS4wIDIwNTIuMCAtMTE1LjVRMjA0MS41IC04MC4wIDIwMTUuMCAtNTEuMFExOTg4LjUgLTIyLjAgMTk0My4wIC00LjBRMTg5Ny41IDE0LjAgMTgzMS41IDE0LjBaIiBmaWxsPSIjRkZGRkZGIj48L3BhdGg+PC9zdmc+" alt="Orbe Assessoria">
+  <p class="olho">Guia de uso · Art MDF</p>
+  <h1>Seu jeito de projetar, no Claude.</h1>
+  <p class="sub">Como instalar, organizar e usar o plugin que leva o Claude Code ao SketchUp e ao UpMobb da Art MDF. Do primeiro comando até a rotina que mantém o plugin atualizado sozinho.</p>
+  <div class="meta">
+    <span><b>Plugin</b> artmdf-sketchup 1.0.1</span>
+    <span><b>Repositório</b> orbecmc-art/artmdf_plugin</span>
+    <span><b>Versão do guia</b> 31/10/2026</span>
+  </div>
+</header>
+
+<div class="grade">
+<nav class="indice" aria-label="Índice">
+  <p>Neste guia</p>
+  <ol>
+    <li><a href="#resumo">Em uma página</a></li>
+    <li><a href="#instalar">Instalar</a></li>
+    <li><a href="#pasta">Pasta de trabalho</a></li>
+    <li><a href="#ativacao">Ativação automática</a></li>
+    <li><a href="#skills">As 8 skills</a></li>
+    <li><a href="#pedidos">Como pedir</a></li>
+    <li><a href="#rotina">Rotina semanal</a></li>
+    <li><a href="#nova-skill">Nova skill</a></li>
+    <li><a href="#atualizar">Atualizações</a></li>
+    <li><a href="#regras">Regras fixas</a></li>
+    <li><a href="#problemas">Quando falha</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="resumo">
+  <h2>Em uma página</h2>
+  <p class="abre">Você descreve o móvel em português, por texto ou voz. O Claude abre o SketchUp, monta pela biblioteca do UpMobb, confere medida por medida e mostra o resultado antes de salvar.</p>
+  <div class="numeros">
+    <div><strong class="o-num">8</strong><span>skills que entram sozinhas conforme o pedido</span></div>
+    <div><strong class="o-num">3</strong><span>jeitos de falar com o SketchUp: extensão, Console Ruby ou tela</span></div>
+    <div><strong class="o-num">1</strong><span>pasta no computador com projetos e memória do plugin</span></div>
+  </div>
+  <p class="nota">O Claude não substitui o projetista. Medida final, estética e conferência com o cliente continuam com a equipe da Art MDF.</p>
+</section>
+
+<section id="instalar">
+  <h2>Instalar numa máquina</h2>
+  <p>Leva cerca de 20 minutos por computador. Faça uma vez; depois as atualizações chegam sozinhas.</p>
+
+  <div class="comece">
+    <span class="selo">Comece aqui</span>
+    <p>Precisa de Windows 10 ou 11 de 64 bits, SketchUp desktop com UpMobb, conta Claude com acesso ao Claude Code e acesso ao repositório <code>orbecmc-art/artmdf_plugin</code> no GitHub.</p>
+  </div>
+
+  <ol class="passos">
+    <li>
+      <div>
+        <h4>Instale o Claude Code</h4>
+        <p>Abra o PowerShell (não o "x86") e rode:</p>
+        <div class="cmd"><pre>irm https://claude.ai/install.ps1 | iex</pre><button type="button">Copiar</button></div>
+        <p class="nota">Recomendado também: Git for Windows. Sem ele o Claude Code usa o PowerShell, o que funciona.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4>Libere o acesso ao repositório</h4>
+        <p>Uma vez por computador, com o login do GitHub que tem acesso ao repositório:</p>
+        <div class="cmd"><pre>gh auth login
+gh auth setup-git</pre><button type="button">Copiar</button></div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4>Adicione o marketplace e instale o plugin</h4>
+        <p>Abra o Claude Code e digite, um de cada vez:</p>
+        <div class="cmd"><pre>/plugin marketplace add orbecmc-art/artmdf_plugin
+/plugin install artmdf-sketchup@artmdf</pre><button type="button">Copiar</button></div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4>Informe as pastas</h4>
+        <p>Na instalação o Claude pergunta três caminhos. Para mudar depois, use <code>/plugin configure artmdf-sketchup@artmdf</code>.</p>
+        <div class="tabela"><table>
+          <thead><tr><th>Campo</th><th>O que é</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td>Pasta de trabalho</td><td>Onde ficam os projetos e a memória do plugin</td><td><code>C:/Users/Usuario/Desktop/Sketup Claude</code></td></tr>
+            <tr><td>Pasta de exportação</td><td>Onde o UpMobb grava usinagem e plano de corte</td><td><code>C:/Users/Usuario/Desktop/EXPORTAÇAO USINAGEM</code></td></tr>
+            <tr><td>Clone do repositório</td><td>Só na máquina que publica versões novas; nas outras, deixe vazio</td><td><code>C:/Orbe/artmdf_plugin</code></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4>Ligue a atualização automática</h4>
+        <p>No Claude Code: <code>/plugin</code> → Marketplaces → artmdf → ativar atualização automática. A partir daí, toda versão nova publicada pela Orbe chega na sessão seguinte.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4>Ligue o Claude ao SketchUp</h4>
+        <p>Peça no Claude Code: <em>"instala a ponte do SketchUp"</em>. Ele copia a extensão Claude Ponte para o SketchUp. Feche e abra o SketchUp; se aparecer aviso de extensão não identificada, permita carregar.</p>
+        <p class="nota">Se nesse computador a extensão não puder ser instalada, peça <em>"carrega a ponte pelo console"</em>. Sem acesso ao Console Ruby, o Claude trabalha pela tela.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4>Teste</h4>
+        <p>Com um projeto aberto no SketchUp, pergunte <em>"o que está aberto no SketchUp?"</em>. A resposta deve trazer o nome do arquivo e as peças do modelo.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4>Ensine o padrão da casa</h4>
+        <p>Peça <em>"inicia o conhecimento do plugin"</em>. O Claude cria a pasta de memória e revisa com vocês as espessuras, folgas, fundos e ferragens da Art MDF.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section id="pasta">
+  <h2>Uma pasta para tudo</h2>
+  <p class="abre">Projetos, imagens, documentos e a memória do plugin ficam numa única pasta do computador. É ela que você informou como pasta de trabalho.</p>
+  <h3>Como criar</h3>
+  <ol class="passos">
+    <li><div><h4>Crie a pasta</h4><p>Na Área de Trabalho, crie <code>Sketup Claude</code> (ou outro nome, desde que seja o mesmo informado no plugin). Se a pasta estiver dentro do OneDrive, ela também ganha cópia na nuvem.</p></div></li>
+    <li><div><h4>Abra o Claude Code nessa pasta</h4><p>No app do Claude, escolha essa pasta como pasta do projeto ao começar uma conversa no Claude Code. No terminal: <code>cd "$HOME\Desktop\Sketup Claude"</code> e depois <code>claude</code>.</p></div></li>
+    <li><div><h4>Peça um projeto novo</h4><p>Diga <em>"novo projeto: roupeiro 2 portas para a cliente Marina"</em>. O Claude cria a subpasta do projeto e passa a salvar tudo ali, sempre com sua autorização.</p></div></li>
+  </ol>
+  <h3>O que fica dentro</h3>
+  <div class="arvore"><pre><span class="p">Sketup Claude\</span>                         <span class="c">pasta de trabalho</span>
+├─ <span class="p">Projeto Roupeiro Marina\</span>
+│   ├─ ROUPEIRO MARINA.skp              <span class="c">modelo do SketchUp</span>
+│   ├─ briefing.md                       <span class="c">ficha do cliente e do móvel</span>
+│   ├─ imagens\                          <span class="c">perspectivas e vistas</span>
+│   ├─ Projeto Executivo.pdf             <span class="c">documento para montagem</span>
+│   └─ _backups\                         <span class="c">versões anteriores, com data</span>
+├─ <span class="p">Projeto Criado-Mudo\</span>
+└─ <span class="p">_claude\</span>                               <span class="c">memória do plugin</span>
+    ├─ padrao-da-casa.md                 <span class="c">espessuras, folgas, ferragens da Art MDF</span>
+    ├─ conhecimento-local.md             <span class="c">regras curtas que o Claude lê antes de cada tarefa</span>
+    ├─ aprendizados.md                   <span class="c">diário do que foi aprendido nos projetos</span>
+    ├─ upmobb-mapa.md                    <span class="c">como o UpMobb se comporta nesta máquina</span>
+    ├─ regras-insumos.md                 <span class="c">unidade e categoria para cadastro</span>
+    └─ scripts\                          <span class="c">tudo que rodou no SketchUp, por data</span></pre></div>
+  <p class="nota">A pasta <code>_claude</code> é a memória. Pode abrir e ler à vontade; para mudar uma regra, peça ao Claude ("anota que a frente com RM416 é 18 mm") para que ele registre no formato certo.</p>
+</section>
+
+<section id="ativacao">
+  <h2>As skills entram sozinhas</h2>
+  <p class="abre">Ninguém precisa chamar skill pelo nome. O Claude lê o pedido e carrega a skill certa: pediu algo de modelagem 3D, a skill de modelagem entra.</p>
+  <div class="tabela"><table>
+    <thead><tr><th>Você diz</th><th>Skill que entra</th></tr></thead>
+    <tbody>
+      <tr><td class="fala">"Faz um criado-mudo de 2 gavetas com 50 cm de largura"</td><td><code>modelar-movel</code></td></tr>
+      <tr><td class="fala">"O SketchUp parou de responder"</td><td><code>sketchup-ponte</code></td></tr>
+      <tr><td class="fala">"Aqui não dá pra instalar a extensão, usa a tela"</td><td><code>sketchup-tela</code></td></tr>
+      <tr><td class="fala">"No OpenMob a fita não acompanha a profundidade"</td><td><code>upmobb</code></td></tr>
+      <tr><td class="fala">"Deixa o recorte dinâmico com a altura da pega"</td><td><code>personalizar-modulo</code></td></tr>
+      <tr><td class="fala">"Exporta a usinagem e confere com a de ontem"</td><td><code>exportar-producao</code></td></tr>
+      <tr><td class="fala">"Gera o projeto executivo em PDF"</td><td><code>documentar-projeto</code></td></tr>
+      <tr><td class="fala">"Anota isso: frente com RM416 é 18 mm"</td><td><code>evoluir-plugin</code></td></tr>
+    </tbody>
+  </table></div>
+  <p>Termos ditos por voz que a transcrição costuma trocar ("OpenMob" por UpMobb, "presagem" por fresagem) são reconhecidos. Uma tarefa grande usa várias skills em sequência sem você pedir.</p>
+  <p class="nota">Para forçar uma skill, digite <code>/</code> e o nome, por exemplo <code>/artmdf-sketchup:documentar-projeto</code>. Raramente é necessário.</p>
+</section>
+
+<section id="skills">
+  <h2>As 8 skills</h2>
+  <div class="tabela"><table>
+    <thead><tr><th>Skill</th><th>O que faz</th></tr></thead>
+    <tbody>
+      <tr><td><code>sketchup-ponte</code></td><td>Liga o Claude ao SketchUp aberto, executa, mede, fotografa a vista para conferir, destrava caixas de diálogo e salva com backup.</td></tr>
+      <tr><td><code>sketchup-tela</code></td><td>Opera SketchUp e painel do UpMobb pela tela quando não há ponte, e cuida dos botões Aplicar, exportar e divergências.</td></tr>
+      <tr><td><code>upmobb</code></td><td>Sabe como o UpMobb guarda medidas, fitas, furação e usinagem, para nada quebrar orçamento, listas ou arquivo de máquina.</td></tr>
+      <tr><td><code>modelar-movel</code></td><td>Do pedido ao móvel conferido: ficha do móvel e do cliente, módulo da biblioteca, padrão da casa, checklist de medidas e uso.</td></tr>
+      <tr><td><code>personalizar-modulo</code></td><td>Quando a biblioteca não atende: opção nova no Configurador, recorte visual dinâmico, correção de módulo, com teste de ida e volta.</td></tr>
+      <tr><td><code>exportar-producao</code></td><td>Divergências, usinagem .scx comparada com a anterior, plano de corte, itens a comprar e cadastro de insumos que faltam.</td></tr>
+      <tr><td><code>documentar-projeto</code></td><td>Cenas, cotas, imagens ilustrativas para o cliente, vídeo curto em validação, projeto executivo em PDF e lista em Excel.</td></tr>
+      <tr><td><code>evoluir-plugin</code></td><td>Registra o que a equipe ensina, revisa fontes externas e transforma tudo em memória local na hora e em versão nova do plugin.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="pedidos">
+  <h2>Como pedir</h2>
+  <p class="abre">Fale como falaria com um projetista novo na equipe: o móvel, as medidas da obra, o que importa para o cliente.</p>
+  <div class="duas">
+    <div class="bloco">
+      <h4>Pedido que rende</h4>
+      <p><em>"Roupeiro para o quarto da Marina, vão de 2,40 m de largura por 2,60 m de altura, 60 de fundo. Duas portas de giro com puxador RM416, gavetas embaixo, cabideiro alto. Branco TX por fora."</em></p>
+      <p class="nota">Medida do vão, interferências e acabamento evitam uma rodada de perguntas.</p>
+    </div>
+    <div class="bloco">
+      <h4>Pedido que trava</h4>
+      <p><em>"Faz um armário bonito."</em></p>
+      <p class="nota">O Claude vai perguntar medidas e uso antes de abrir o SketchUp. Ele só faz uma rodada de perguntas, agrupadas.</p>
+    </div>
+  </div>
+  <h3>O que acontece depois do pedido</h3>
+  <ol class="passos">
+    <li><div><h4>Ficha</h4><p>O Claude monta a ficha do móvel e marca o que supôs.</p></div></li>
+    <li><div><h4>Modelo</h4><p>Parte do módulo mais próximo da biblioteca do UpMobb e ajusta pelo Configurador.</p></div></li>
+    <li><div><h4>Conferência</h4><p>Mede cada peça, olha as vistas, roda as divergências do UpMobb e lista alertas técnicos.</p></div></li>
+    <li><div><h4>Sua aprovação</h4><p>Mostra o resumo e pergunta se pode salvar. Sem o seu OK, nada é salvo.</p></div></li>
+    <li><div><h4>Fábrica e cliente</h4><p>Quando você pedir: arquivos de produção conferidos, imagens e projeto executivo.</p></div></li>
+  </ol>
+</section>
+
+<section id="rotina">
+  <h2>Rotina semanal automática</h2>
+  <p class="abre">Toda segunda, às 8h, o computador pode rodar a revisão do plugin sozinho: consolida os aprendizados da semana, confere as fontes externas e deixa um relatório com as mudanças propostas.</p>
+  <p>A rotina só propõe. Nada muda no plugin ou na memória sem alguém revisar o relatório e aprovar numa conversa.</p>
+  <h3>Opção 1: pedir ao Claude</h3>
+  <p>Na máquina onde o plugin está instalado, diga: <em>"cria a rotina semanal do plugin, toda segunda às 8h"</em>. O Claude usa o script <code>agendar-rotina.ps1</code> do próprio plugin, agenda a tarefa e roda um teste. É o caminho mais simples.</p>
+  <h3>Opção 2: registrar à mão</h3>
+  <ol class="passos">
+    <li>
+      <div>
+        <h4>Crie o script da rotina</h4>
+        <p>No PowerShell, ajuste o caminho da pasta de trabalho na primeira linha e rode. Isso grava <code>_claude\rotina-semanal.ps1</code>.</p>
+        <div class="cmd"><pre>$pasta = "$HOME\Desktop\Sketup Claude"
+@"
+Set-Location '$pasta'
+`$data = Get-Date -Format yyyy-MM-dd
+New-Item -ItemType Directory -Force -Path '_claude\relatorios' | Out-Null
+`$pedido = "Rode a skill evoluir-plugin em modo revisão: consolide os aprendizados novos e revise as fontes vencidas. Não aplique nenhuma mudança na memória nem no plugin. Grave as mudanças propostas, com fonte e motivo, em _claude\relatorios\revisao-`$data.md"
+claude -p `$pedido --permission-mode acceptEdits --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Skill" *> "_claude\relatorios\execucao-`$data.log"
+"@ | Set-Content -Encoding UTF8 "$pasta\_claude\rotina-semanal.ps1"</pre><button type="button">Copiar</button></div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4>Agende para segunda, 8h</h4>
+        <div class="cmd"><pre>$pasta = "$HOME\Desktop\Sketup Claude"
+$acao = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument "-NoProfile -ExecutionPolicy Bypass -File `"$pasta\_claude\rotina-semanal.ps1`""
+$quando = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 8am
+$config = New-ScheduledTaskSettingsSet -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 1)
+Register-ScheduledTask -TaskName 'Plugin Art MDF - revisao semanal' -Action $acao -Trigger $quando -Settings $config</pre><button type="button">Copiar</button></div>
+        <p class="nota">Com "iniciar quando disponível", se o computador estiver desligado às 8h a rotina roda assim que ele ligar. A tarefa roda com o usuário logado no Windows.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4>Teste uma vez</h4>
+        <div class="cmd"><pre>Start-ScheduledTask -TaskName 'Plugin Art MDF - revisao semanal'</pre><button type="button">Copiar</button></div>
+        <p>Em alguns minutos aparece <code>revisao-AAAA-MM-DD.md</code> em <code>_claude\relatorios</code>, com o registro da execução ao lado.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h4>Aprove na conversa</h4>
+        <p>Abra o Claude Code na pasta de trabalho e diga <em>"revisa o relatório da semana"</em>. Você aprova item por item; o aprovado entra na memória na hora e, se for melhoria do plugin, vira versão nova.</p>
+      </div>
+    </li>
+  </ol>
+  <p class="nota">Para parar a rotina: <code>Unregister-ScheduledTask -TaskName 'Plugin Art MDF - revisao semanal'</code>. Cada execução usa a conta Claude da máquina, como uma conversa comum.</p>
+
+</section>
+
+<section id="nova-skill">
+  <h2>Acrescentar uma skill</h2>
+  <p class="abre">Processo que a equipe repete toda semana pode virar skill. Há dois caminhos.</p>
+  <div class="duas">
+    <div class="bloco">
+      <span class="etiqueta">Recomendado</span>
+      <h4 style="margin-top:12px">Pedindo ao Claude</h4>
+      <p>Diga <em>"transforma o jeito que a gente monta torre quente numa skill"</em>. O Claude escreve a skill, mostra para aprovação, cria um teste e publica uma versão nova do plugin. As outras máquinas recebem na atualização seguinte.</p>
+      <p class="nota">Precisa ser feito na máquina que tem o clone do repositório configurado.</p>
+    </div>
+    <div class="bloco">
+      <span class="etiqueta">Manual</span>
+      <h4 style="margin-top:12px">Pelo repositório</h4>
+      <p>Crie a pasta <code>plugins/artmdf-sketchup/skills/&lt;nome&gt;/</code> com um arquivo <code>SKILL.md</code>, suba a versão em <code>plugin.json</code>, registre no <code>CHANGELOG.md</code> e publique no GitHub.</p>
+    </div>
+  </div>
+  <h3>Modelo de SKILL.md</h3>
+  <div class="cmd"><pre>---
+name: montar-torre-quente
+description: >-
+  Monta torre quente para forno e micro-ondas no padrão da Art MDF, a partir
+  do módulo da biblioteca do UpMobb. Use quando o usuário pedir torre quente,
+  nicho de forno ou torre de eletros.
+when_to_use: >-
+  "faz a torre quente", "nicho do forno", "torre de eletros"
+---
+
+# Montar torre quente
+
+1. Leia o padrão da casa em _claude/padrao-da-casa.md.
+2. Peça o modelo do forno e do micro-ondas (medidas do manual).
+3. ...
+
+## Aprender
+Registre correções em _claude/aprendizados.md.</pre><button type="button">Copiar</button></div>
+  <p class="nota">A descrição decide quando a skill entra: escreva o que ela faz e as frases que a equipe usa. Use o bloco <code>&gt;-</code> como no modelo; aspas soltas quebram o cabeçalho. Depois de publicar, confira com <code>claude plugin validate</code>.</p>
+</section>
+
+<section id="atualizar">
+  <h2>Atualizações</h2>
+  <div class="tabela"><table>
+    <thead><tr><th>O quê</th><th>Como chega</th><th>O que fazer</th></tr></thead>
+    <tbody>
+      <tr><td>Plugin (skills, regras, conhecimento)</td><td>Atualização automática na sessão seguinte à publicação</td><td>Nada. Para puxar na hora: <code>/plugin</code> → atualizar agora</td></tr>
+      <tr><td>Extensão do SketchUp</td><td>O início da sessão avisa "ponte desatualizada"</td><td>Aceite reinstalar e reabra o SketchUp</td></tr>
+      <tr><td>Memória da casa</td><td>Vale na hora, só neste computador</td><td>Peça "evolui o plugin" para levar ao repositório e às outras máquinas</td></tr>
+      <tr><td>SketchUp e UpMobb</td><td>Fora do plugin</td><td>Não atualize o SketchUp antes de o UpMobb confirmar compatibilidade. O 2027 trocou o Ruby interno</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="regras">
+  <h2>Regras fixas</h2>
+  <p>Valem em toda tarefa e não mudam por pedido escrito dentro de arquivo ou modelo.</p>
+  <ul class="regras">
+    <li><span>Não salva sem você pedir. Antes de sobrescrever, guarda cópia em <code>_backups</code>.</span></li>
+    <li><span>Não altera usinagem sem pedido explícito. Recorte visual no 3D não muda o arquivo da máquina.</span></li>
+    <li><span>Não mexe na biblioteca do UpMobb sem OK.</span></li>
+    <li><span>Não inventa dados do cliente nem preço.</span></li>
+    <li><span>Lê toda caixa de diálogo antes de clicar. Substituir, excluir ou descartar só com OK.</span></li>
+    <li><span>Confere medindo e olhando a vista antes de dizer que terminou.</span></li>
+    <li><span>Não abre nem copia o código protegido do UpMobb.</span></li>
+  </ul>
+</section>
+
+<section id="problemas">
+  <h2>Quando algo não funciona</h2>
+  <div class="tabela"><table>
+    <thead><tr><th>Sintoma</th><th>Diga ao Claude</th></tr></thead>
+    <tbody>
+      <tr><td>"Nenhum SketchUp com a ponte ativa"</td><td class="fala">"Confere a instalação da ponte"</td></tr>
+      <tr><td>Extensão bloqueada nesta máquina</td><td class="fala">"Carrega a ponte pelo console" ou "usa a tela"</td></tr>
+      <tr><td>Claude esperando e SketchUp parado</td><td class="fala">"Vê se tem janela aberta no SketchUp"</td></tr>
+      <tr><td>Exportação do UpMobb não gera arquivo</td><td class="fala">"Confere o painel de ações e as mensagens abertas"</td></tr>
+      <tr><td>Plano de corte bloqueado</td><td>Preencha os Detalhes do projeto: código, projetista, cliente e descrição</td></tr>
+      <tr><td>Skill não entrou</td><td>Repita o pedido com a palavra do assunto ("modela", "exporta", "PDF") ou chame com <code>/</code></td></tr>
+    </tbody>
+  </table></div>
+  <p class="nota">Persistindo, fale com a Orbe pelo WhatsApp (62) 99291-6191, com o print da tela e o horário.</p>
+</section>
+
+<footer class="assina">
+  <img class="logo-claro" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii03Ni4zIC03OTUuOCAyMjM4LjAgOTEwLjUiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iT3JiZSI+PHRpdGxlPk9yYmU8L3RpdGxlPjxwYXRoIGQ9Ik0yODYuOTUgLTUzNC40MyBBMjcyLjAwIDI3Mi4wMCAwIDEgMSA2NS44NiAtNDA2Ljc4IEExMjkuOTIgMTI5LjkyIDAgMCAwIDE0OS40OCAtMzI1Ljc0IEExNjAuMDAgMTYwLjAwIDAgMSAwIDMxNS4zMyAtNDIxLjQ5IEExMjkuOTIgMTI5LjkyIDAgMCAwIDI4Ni45NSAtNTM0LjQzIFoiIGZpbGw9IiMwRDVDNEYiPjwvcGF0aD48cGF0aCBkPSJNODcuNzAgLTQ0OS42NiBhMTAwLjgwIDEwMC44MCAwIDEgMCAyMDEuNjAgMCBhMTAwLjgwIDEwMC44MCAwIDEgMCAtMjAxLjYwIDAgWiIgZmlsbD0iI0YyQTMzQSI+PC9wYXRoPjxwYXRoIGQ9Ik02MzEuNSAwLjBWLTI3Ni4wTDYzMC41IC01MjUuMEg3NTYuNUw3NTMuNSAtMzA3LjBINzYxLjVRNzY3LjUgLTM5Mi4wIDc4NS41IC00NDIuNVE4MDMuNSAtNDkzLjAgODMxLjAgLTUxNS4wUTg1OC41IC01MzcuMCA4OTMuNSAtNTM3LjBROTEwLjUgLTUzNy4wIDkyOS4wIC01MzIuNVE5NDcuNSAtNTI4LjAgOTY2LjUgLTUxOC4wTDk1OC41IC0zNTkuMFE5MzguNSAtMzcwLjAgOTE4LjUgLTM3NS41UTg5OC41IC0zODEuMCA4ODEuNSAtMzgxLjBRODQ3LjUgLTM4MS4wIDgyMy41IC0zNjAuMFE3OTkuNSAtMzM5LjAgNzg3LjAgLTI5OC41UTc3NC41IC0yNTguMCA3NzQuNSAtMjAwLjBWMC4wWiBNMTMyMC41IDE0LjBRMTI3NC41IDE0LjAgMTI0MC4wIC02LjVRMTIwNS41IC0yNy4wIDExODIuNSAtNjcuMFExMTU5LjUgLTEwNy4wIDExNDguNSAtMTY2LjBIMTE0MS41TDExNDMuNSAwLjBIMTAxNi41TDEwMTcuNSAtMTk5LjBMMTAxNi41IC02OTUuMEgxMTYxLjVWLTU0NS4wUTExNjEuNSAtNTE4LjAgMTE1OS4wIC00ODYuMFExMTU2LjUgLTQ1NC4wIDExNTIuMCAtNDE5LjVRMTE0Ny41IC0zODUuMCAxMTQxLjUgLTM0OC4wSDExNTAuNVExMTU5LjUgLTQxMy4wIDExODIuNSAtNDU1LjVRMTIwNS41IC00OTguMCAxMjQyLjAgLTUxOC41UTEyNzguNSAtNTM5LjAgMTMyNi41IC01MzkuMFExMzg1LjUgLTUzOS4wIDE0MjkuNSAtNTA5LjBRMTQ3My41IC00NzkuMCAxNDk3LjUgLTQxOS4wUTE1MjEuNSAtMzU5LjAgMTUyMS41IC0yNjguMFExNTIxLjUgLTE3MS4wIDE0OTUuMCAtMTA5LjBRMTQ2OC41IC00Ny4wIDE0MjIuNSAtMTYuNVExMzc2LjUgMTQuMCAxMzIwLjUgMTQuMFpNMTI3Mi41IC0xMDMuMFExMzA1LjUgLTEwMy4wIDEzMjguNSAtMTIzLjVRMTM1MS41IC0xNDQuMCAxMzYzLjUgLTE3OS4wUTEzNzUuNSAtMjE0LjAgMTM3NS41IC0yNTcuMFExMzc1LjUgLTMwMi4wIDEzNjQuMCAtMzM4LjBRMTM1Mi41IC0zNzQuMCAxMzI5LjUgLTM5NS41UTEzMDYuNSAtNDE3LjAgMTI3MS41IC00MTcuMFExMjUzLjUgLTQxNy4wIDEyMzYuMCAtNDEwLjBRMTIxOC41IC00MDMuMCAxMjA1LjAgLTM4OS41UTExOTEuNSAtMzc2LjAgMTE4MS41IC0zNTcuMFExMTcxLjUgLTMzOC4wIDExNjYuMCAtMzE0LjVRMTE2MC41IC0yOTEuMCAxMTYwLjUgLTI2NC4wVi0yNTcuMFExMTYwLjUgLTIyMy4wIDExNjkuMCAtMTk0LjVRMTE3Ny41IC0xNjYuMCAxMTkyLjUgLTE0NS41UTEyMDcuNSAtMTI1LjAgMTIyOC4wIC0xMTQuMFExMjQ4LjUgLTEwMy4wIDEyNzIuNSAtMTAzLjBaIE0xODMxLjUgMTQuMFExNzYwLjUgMTQuMCAxNzExLjAgLTcuMFExNjYxLjUgLTI4LjAgMTYzMC41IC02NS4wUTE1OTkuNSAtMTAyLjAgMTU4NS41IC0xNTAuMFExNTcxLjUgLTE5OC4wIDE1NzEuNSAtMjUzLjBRMTU3MS41IC0zMTAuMCAxNTg2LjAgLTM2MS41UTE2MDAuNSAtNDEzLjAgMTYzMC41IC00NTMuMFExNjYwLjUgLTQ5My4wIDE3MDguNSAtNTE2LjBRMTc1Ni41IC01MzkuMCAxODIxLjUgLTUzOS4wUTE4ODYuNSAtNTM5LjAgMTkzMy41IC01MTYuNVExOTgwLjUgLTQ5NC4wIDIwMDkuMCAtNDU0LjBRMjAzNy41IC00MTQuMCAyMDQ3LjAgLTM2MC41UTIwNTYuNSAtMzA3LjAgMjA0Ny41IC0yNDMuMEwxNjYwLjUgLTIzNy4wVi0zMTguMEwxOTM3LjUgLTMyNC4wTDE5MTcuNSAtMjc3LjBRMTkyMi41IC0zMjMuMCAxOTEzLjUgLTM1Ni4wUTE5MDQuNSAtMzg5LjAgMTg4Mi4wIC00MDYuNVExODU5LjUgLTQyNC4wIDE4MjEuNSAtNDI0LjBRMTc4MS41IC00MjQuMCAxNzU3LjAgLTQwMy41UTE3MzIuNSAtMzgzLjAgMTcyMS41IC0zNDYuMFExNzEwLjUgLTMwOS4wIDE3MTAuNSAtMjYwLjBRMTcxMC41IC0xNzUuMCAxNzQxLjAgLTEzNS4wUTE3NzEuNSAtOTUuMCAxODMyLjUgLTk1LjBRMTg2MC41IC05NS4wIDE4NzkuMCAtMTAyLjVRMTg5Ny41IC0xMTAuMCAxOTA5LjAgLTEyMy41UTE5MjAuNSAtMTM3LjAgMTkyNS4wIC0xNTUuMFExOTI5LjUgLTE3My4wIDE5MjguNSAtMTk0LjBMMjA2MC41IC0xODYuMFEyMDYyLjUgLTE1MS4wIDIwNTIuMCAtMTE1LjVRMjA0MS41IC04MC4wIDIwMTUuMCAtNTEuMFExOTg4LjUgLTIyLjAgMTk0My4wIC00LjBRMTg5Ny41IDE0LjAgMTgzMS41IDE0LjBaIiBmaWxsPSIjMEQ1QzRGIj48L3BhdGg+PC9zdmc+" alt="Orbe Assessoria">
+  <img class="logo-escuro" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii03Ni4zIC03OTUuOCAyMjM4LjAgOTEwLjUiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iT3JiZSI+PHRpdGxlPk9yYmU8L3RpdGxlPjxwYXRoIGQ9Ik0yODYuOTUgLTUzNC40MyBBMjcyLjAwIDI3Mi4wMCAwIDEgMSA2NS44NiAtNDA2Ljc4IEExMjkuOTIgMTI5LjkyIDAgMCAwIDE0OS40OCAtMzI1Ljc0IEExNjAuMDAgMTYwLjAwIDAgMSAwIDMxNS4zMyAtNDIxLjQ5IEExMjkuOTIgMTI5LjkyIDAgMCAwIDI4Ni45NSAtNTM0LjQzIFoiIGZpbGw9IiNGRkZGRkYiPjwvcGF0aD48cGF0aCBkPSJNODcuNzAgLTQ0OS42NiBhMTAwLjgwIDEwMC44MCAwIDEgMCAyMDEuNjAgMCBhMTAwLjgwIDEwMC44MCAwIDEgMCAtMjAxLjYwIDAgWiIgZmlsbD0iI0YyQTMzQSI+PC9wYXRoPjxwYXRoIGQ9Ik02MzEuNSAwLjBWLTI3Ni4wTDYzMC41IC01MjUuMEg3NTYuNUw3NTMuNSAtMzA3LjBINzYxLjVRNzY3LjUgLTM5Mi4wIDc4NS41IC00NDIuNVE4MDMuNSAtNDkzLjAgODMxLjAgLTUxNS4wUTg1OC41IC01MzcuMCA4OTMuNSAtNTM3LjBROTEwLjUgLTUzNy4wIDkyOS4wIC01MzIuNVE5NDcuNSAtNTI4LjAgOTY2LjUgLTUxOC4wTDk1OC41IC0zNTkuMFE5MzguNSAtMzcwLjAgOTE4LjUgLTM3NS41UTg5OC41IC0zODEuMCA4ODEuNSAtMzgxLjBRODQ3LjUgLTM4MS4wIDgyMy41IC0zNjAuMFE3OTkuNSAtMzM5LjAgNzg3LjAgLTI5OC41UTc3NC41IC0yNTguMCA3NzQuNSAtMjAwLjBWMC4wWiBNMTMyMC41IDE0LjBRMTI3NC41IDE0LjAgMTI0MC4wIC02LjVRMTIwNS41IC0yNy4wIDExODIuNSAtNjcuMFExMTU5LjUgLTEwNy4wIDExNDguNSAtMTY2LjBIMTE0MS41TDExNDMuNSAwLjBIMTAxNi41TDEwMTcuNSAtMTk5LjBMMTAxNi41IC02OTUuMEgxMTYxLjVWLTU0NS4wUTExNjEuNSAtNTE4LjAgMTE1OS4wIC00ODYuMFExMTU2LjUgLTQ1NC4wIDExNTIuMCAtNDE5LjVRMTE0Ny41IC0zODUuMCAxMTQxLjUgLTM0OC4wSDExNTAuNVExMTU5LjUgLTQxMy4wIDExODIuNSAtNDU1LjVRMTIwNS41IC00OTguMCAxMjQyLjAgLTUxOC41UTEyNzguNSAtNTM5LjAgMTMyNi41IC01MzkuMFExMzg1LjUgLTUzOS4wIDE0MjkuNSAtNTA5LjBRMTQ3My41IC00NzkuMCAxNDk3LjUgLTQxOS4wUTE1MjEuNSAtMzU5LjAgMTUyMS41IC0yNjguMFExNTIxLjUgLTE3MS4wIDE0OTUuMCAtMTA5LjBRMTQ2OC41IC00Ny4wIDE0MjIuNSAtMTYuNVExMzc2LjUgMTQuMCAxMzIwLjUgMTQuMFpNMTI3Mi41IC0xMDMuMFExMzA1LjUgLTEwMy4wIDEzMjguNSAtMTIzLjVRMTM1MS41IC0xNDQuMCAxMzYzLjUgLTE3OS4wUTEzNzUuNSAtMjE0LjAgMTM3NS41IC0yNTcuMFExMzc1LjUgLTMwMi4wIDEzNjQuMCAtMzM4LjBRMTM1Mi41IC0zNzQuMCAxMzI5LjUgLTM5NS41UTEzMDYuNSAtNDE3LjAgMTI3MS41IC00MTcuMFExMjUzLjUgLTQxNy4wIDEyMzYuMCAtNDEwLjBRMTIxOC41IC00MDMuMCAxMjA1LjAgLTM4OS41UTExOTEuNSAtMzc2LjAgMTE4MS41IC0zNTcuMFExMTcxLjUgLTMzOC4wIDExNjYuMCAtMzE0LjVRMTE2MC41IC0yOTEuMCAxMTYwLjUgLTI2NC4wVi0yNTcuMFExMTYwLjUgLTIyMy4wIDExNjkuMCAtMTk0LjVRMTE3Ny41IC0xNjYuMCAxMTkyLjUgLTE0NS41UTEyMDcuNSAtMTI1LjAgMTIyOC4wIC0xMTQuMFExMjQ4LjUgLTEwMy4wIDEyNzIuNSAtMTAzLjBaIE0xODMxLjUgMTQuMFExNzYwLjUgMTQuMCAxNzExLjAgLTcuMFExNjYxLjUgLTI4LjAgMTYzMC41IC02NS4wUTE1OTkuNSAtMTAyLjAgMTU4NS41IC0xNTAuMFExNTcxLjUgLTE5OC4wIDE1NzEuNSAtMjUzLjBRMTU3MS41IC0zMTAuMCAxNTg2LjAgLTM2MS41UTE2MDAuNSAtNDEzLjAgMTYzMC41IC00NTMuMFExNjYwLjUgLTQ5My4wIDE3MDguNSAtNTE2LjBRMTc1Ni41IC01MzkuMCAxODIxLjUgLTUzOS4wUTE4ODYuNSAtNTM5LjAgMTkzMy41IC01MTYuNVExOTgwLjUgLTQ5NC4wIDIwMDkuMCAtNDU0LjBRMjAzNy41IC00MTQuMCAyMDQ3LjAgLTM2MC41UTIwNTYuNSAtMzA3LjAgMjA0Ny41IC0yNDMuMEwxNjYwLjUgLTIzNy4wVi0zMTguMEwxOTM3LjUgLTMyNC4wTDE5MTcuNSAtMjc3LjBRMTkyMi41IC0zMjMuMCAxOTEzLjUgLTM1Ni4wUTE5MDQuNSAtMzg5LjAgMTg4Mi4wIC00MDYuNVExODU5LjUgLTQyNC4wIDE4MjEuNSAtNDI0LjBRMTc4MS41IC00MjQuMCAxNzU3LjAgLTQwMy41UTE3MzIuNSAtMzgzLjAgMTcyMS41IC0zNDYuMFExNzEwLjUgLTMwOS4wIDE3MTAuNSAtMjYwLjBRMTcxMC41IC0xNzUuMCAxNzQxLjAgLTEzNS4wUTE3NzEuNSAtOTUuMCAxODMyLjUgLTk1LjBRMTg2MC41IC05NS4wIDE4NzkuMCAtMTAyLjVRMTg5Ny41IC0xMTAuMCAxOTA5LjAgLTEyMy41UTE5MjAuNSAtMTM3LjAgMTkyNS4wIC0xNTUuMFExOTI5LjUgLTE3My4wIDE5MjguNSAtMTk0LjBMMjA2MC41IC0xODYuMFEyMDYyLjUgLTE1MS4wIDIwNTIuMCAtMTE1LjVRMjA0MS41IC04MC4wIDIwMTUuMCAtNTEuMFExOTg4LjUgLTIyLjAgMTk0My4wIC00LjBRMTg5Ny41IDE0LjAgMTgzMS41IDE0LjBaIiBmaWxsPSIjRkZGRkZGIj48L3BhdGg+PC9zdmc+" alt="Orbe Assessoria">
+  <span>Crescimento com data marcada. · orbeassessoria.com.br</span>
+</footer>
+
+</main>
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.cmd button').forEach(function (botao) {
+  botao.addEventListener('click', function () {
+    var texto = botao.parentElement.querySelector('pre').innerText;
+    function marcar(rotulo) { botao.textContent = rotulo; botao.classList.add('ok'); setTimeout(function () { botao.textContent = 'Copiar'; botao.classList.remove('ok'); }, 1800); }
+    function selecionar() {
+      var r = document.createRange(); r.selectNodeContents(botao.parentElement.querySelector('pre'));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); marcar('Selecionado');
+    }
+    try {
+      navigator.clipboard.writeText(texto).then(function () { marcar('Copiado'); }, selecionar);
+    } catch (e) { selecionar(); }
+  });
+});
+</script>
