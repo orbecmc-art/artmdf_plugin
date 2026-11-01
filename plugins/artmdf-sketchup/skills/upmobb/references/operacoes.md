@@ -39,7 +39,7 @@ Antes: modelo salvo (com OK do usuário), um móvel por arquivo, divergências r
 
 | O quê | Como | Depois |
 |---|---|---|
-| Usinagem (.scx) | Painel de ações > exportação de usinagem | MessageBox "abrir local?" → responder. Conferir arquivo novo pela data/hora e pelo conteúdo (skill exportar-producao) |
+| Usinagem (.scx) | Painel de ações > exportação de usinagem | MessageBox "abrir local?" → responder. Conferir arquivo novo pela data/hora e pelo conteúdo (skill upmobb-cadastrar-itens-faltantes) |
 | Plano de corte (.json) | Painel de ações > plano de corte | Exige Detalhes do projeto. Se bloquear, peça os dados ao usuário |
 | Itens a comprar | Painel UpMobb > Exportação > Exportar listagens > Itens a comprar > "Todo o projeto" | Lista "elementos sem cadastro" → cadastro em Insumos (skill exportar-producao) |
 

@@ -11,7 +11,8 @@ Plugin que ensina o Claude Code a projetar móveis planejados no SketchUp da Art
 | `upmobb` | Como o UpMobb funciona por dentro e as regras para não quebrar orçamento, listas e usinagem |
 | `modelar-movel` | Do pedido ao móvel conferido: ficha, biblioteca do UpMobb, padrão da casa, checklist |
 | `personalizar-modulo` | Quando a biblioteca não atende: opções novas, recortes visuais, correções de módulo |
-| `exportar-producao` | Divergências, usinagem .scx (com comparação), plano de corte, itens a comprar, cadastro de insumos |
+| `exportar-producao` | Divergências, usinagem .scx (com comparação), plano de corte, itens a comprar |
+| `upmobb-cadastrar-itens-faltantes` | Cadastra em Insumos (painel web do UpMobb) os itens da lista de elementos sem cadastro e confere até a lista zerar |
 | `documentar-projeto` | Cenas, cotas, imagens para o cliente, projeto executivo em PDF, CSV |
 | `evoluir-plugin` | Aprendizados da equipe + revisão de fontes externas → conhecimento local na hora e nova versão do plugin |
 

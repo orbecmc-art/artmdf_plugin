@@ -1,5 +1,10 @@
 # Changelog · artmdf-sketchup
 
+## 1.0.2 · 01/11/2026
+
+- Skill nova `upmobb-cadastrar-itens-faltantes`: cadastro em Insumos dos itens da "Lista de elementos sem cadastro", agora com leitura do diálogo por `janelas.ps1`, checagem de código já cadastrado antes de criar (evita duplicata), aprovação da lista antes de gravar e regra nova salva em `_claude/regras-insumos.md`. Sai da `exportar-producao`, que passa a chamá-la.
+- Guia de uso em Markdown (`docs/guia-plugin-art-mdf.md`) no lugar da versão HTML.
+
 ## 1.0.1 · 31/10/2026
 
 - Rotina semanal no Windows: `scripts/agendar-rotina.ps1` agenda a revisão do plugin (só propõe, grava relatório em `_claude/relatorios`). A skill evoluir-plugin ganhou o modo revisão.

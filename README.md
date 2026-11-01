@@ -13,7 +13,7 @@ Instalar:
 /plugin install artmdf-sketchup@artmdf
 ```
 
-Guia completo de uso: `docs/guia-plugin-art-mdf.html` (abra no navegador).
+Guia completo de uso: [`docs/guia-plugin-art-mdf.md`](docs/guia-plugin-art-mdf.md).
 
 Repositório privado: cada máquina precisa de `gh auth login` e `gh auth setup-git`.
 Para publicar versão nova, siga `plugins/artmdf-sketchup/skills/evoluir-plugin/references/publicar.md`.

@@ -1,7 +1,7 @@
 {
   "name": "artmdf-sketchup",
   "displayName": "Art MDF · SketchUp + UpMobb",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Modelagem de móveis planejados no SketchUp com UpMobb, pelo Claude Code: ponte com o SketchUp aberto (ou controle pela tela), modelagem a partir da biblioteca, personalização de módulos, exportação para produção, documentação para o cliente e rotina que evolui o próprio plugin com o que a equipe aprende.",
   "author": {
     "name": "Orbe Assessoria Digital",

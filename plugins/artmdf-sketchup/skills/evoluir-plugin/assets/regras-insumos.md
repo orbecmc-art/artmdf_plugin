@@ -1,6 +1,6 @@
 # Regras de cadastro de insumos · Art MDF
 
-Prevalece sobre a tabela padrão da skill exportar-producao. Preencha com o projetista.
+Prevalece sobre a tabela padrão da skill upmobb-cadastrar-itens-faltantes. Preencha com o projetista.
 
 | Padrão de código ou tipo de item | Unidade | Categoria | Observação |
 |---|---|---|---|

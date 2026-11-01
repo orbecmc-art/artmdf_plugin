@@ -42,7 +42,7 @@ Comandos:
 
 - **Controle do computador** (app do Claude no computador, inclusive em sessão remota): capturas, cliques, teclado. Se houver uma skill de controle do computador, carregue antes e peça acesso ao SketchUp. Libere só os apps necessários (SketchUp; navegador só se for o painel web do UpMobb).
 - **`JANELAS`**: lê texto e botões de caixas de diálogo, clica por nome e captura janela encoberta (`-Capturar arquivo.png -Janela "UpMobb"`). Funciona sem a ponte e sem controle de tela.
-- **Painel web do UpMobb** (cadastro de insumos): navegador do Claude, não cliques no desktop.
+- **Painel web do UpMobb** (cadastro de insumos, skill `upmobb-cadastrar-itens-faltantes`): navegador do Claude, não cliques no desktop.
 - Arquivos exportados (.scx) leem-se com `scx.ps1` (skill `exportar-producao`), sem precisar do SketchUp.
 
 Sem controle do computador disponível: diga ao usuário qual recurso falta (ativar o controle do computador no app do Claude) e faça o que der com `JANELAS` e com as instruções passo a passo para ele clicar.

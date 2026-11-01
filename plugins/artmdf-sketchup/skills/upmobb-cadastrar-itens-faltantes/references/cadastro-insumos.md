@@ -1,6 +1,6 @@
 # Cadastro de itens sem cadastro no UpMobb (painel web)
 
-Verificado em: 31/10/2026 · Origem: skill "upmobb-cadastrar-itens-faltantes" da Orbe, incorporada aqui.
+Verificado em: 31/10/2026 · Origem: skill "upmobb-cadastrar-itens-faltantes" da Orbe. Referência da skill de mesmo nome.
 
 Objetivo: zerar o aviso "Lista de elementos sem cadastro" que aparece ao gerar "Itens a comprar".
 
@@ -21,7 +21,7 @@ Cada linha vem como `CODIGO - Descrição` (ex.: `PONT416FECCHAMPAGNE_ALTE - Pon
 
 Unidades disponíveis: Unidade, Metro, Metro², Metro³, Milheiro, Cento, Pacote, Dúzia, Par, Hora trabalho, Cartela.
 
-Se existir `_claude/regras-insumos.md` na pasta de trabalho (caminho na skill exportar-producao) (regras da casa sobre unidade e categoria), ele prevalece. Não deu para classificar com segurança: "Indefinido" e liste no fim. Dúvidas: uma pergunta só, agrupando todos os itens. **Preço: deixar 0,00** (não inventar).
+Se existir `_claude/regras-insumos.md` na pasta de trabalho (regras da casa sobre unidade e categoria), ele prevalece. Não deu para classificar com segurança: "Indefinido" e liste no fim. Dúvidas: uma pergunta só, agrupando todos os itens. **Preço: deixar 0,00** (não inventar).
 
 ## 3. Cadastrar no painel
 

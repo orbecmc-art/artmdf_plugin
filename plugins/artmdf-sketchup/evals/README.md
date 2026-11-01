@@ -8,6 +8,6 @@ claude plugin eval . --case modelar-criado-mudo
 ```
 
 Estes casos testam **acionamento** (a skill certa carrega com o pedido típico, inclusive com termos de voz como "openmob") e regras de segurança. Não precisam do SketchUp: `allowed_tools` não inclui execução.
-Casos: acionamento das 8 skills.
+Casos: acionamento das 9 skills.
 
 Ao criar skill nova, crie pelo menos um caso aqui (skill evoluir-plugin, publicar.md).

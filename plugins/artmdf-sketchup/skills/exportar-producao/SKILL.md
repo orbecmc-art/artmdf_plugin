@@ -2,13 +2,12 @@
 name: exportar-producao
 description: >-
   Prepara e gera os arquivos de produção do UpMobb para a fábrica e confere cada um — verificação de
-  divergências, arquivo de usinagem .scx para as máquinas, plano de corte, itens a comprar e cadastro dos
-  insumos que faltam no painel web do UpMobb. Use quando o usuário pedir para exportar, mandar para a fábrica,
-  gerar usinagem, plano de corte, lista de compras ou itens a comprar, cadastrar itens sem cadastro, ou comparar
-  a usinagem antes e depois de uma alteração.
+  divergências, arquivo de usinagem .scx para as máquinas, plano de corte e itens a comprar. Use quando o
+  usuário pedir para exportar, mandar para a fábrica, gerar usinagem, plano de corte, lista de compras ou itens
+  a comprar, ou comparar a usinagem antes e depois de uma alteração.
 when_to_use: >-
   "exporta a usinagem", "manda pra fábrica", "gera o scx", "plano de corte", "itens a comprar", "lista de
-  compras", "itens sem cadastro", "cadastra os insumos", "a usinagem mudou?"
+  compras", "a usinagem mudou?"
 ---
 
 # Exportar para produção
@@ -58,12 +57,11 @@ Detalhe de uma peça: `SCX -Arquivo "<caminho>" -Peca "Porta Esquerda"`.
 
 Exportar pelo painel de ações. Bloqueou pedindo Detalhes do projeto → pedir os dados ao usuário. Gerado → confirmar arquivo novo na pasta e informar o caminho.
 
-## 5. Itens a comprar e cadastro de insumos
+## 5. Itens a comprar
 
 1. Gerar "Itens a comprar" (UpMobb > Exportação > Exportar listagens > Itens a comprar > Todo o projeto).
-2. Se aparecer "Lista de elementos sem cadastro", obter o texto (o usuário cola, ou captura do diálogo).
-3. Cadastrar os itens no painel web do UpMobb seguindo `references/cadastro-insumos.md` (navegador com o login do usuário).
-4. Regerar a lista: o aviso deve sumir. Itens ainda faltando → conferir código idêntico.
+2. Apareceu "Lista de elementos sem cadastro" → carregar a skill `upmobb-cadastrar-itens-faltantes` e seguir até a lista regerada vir vazia.
+3. Lista gerada sem aviso → confirmar o arquivo novo e informar o caminho.
 
 ## 6. Entrega
 
