@@ -24,6 +24,8 @@ Cada fonte indica o que observar e quais arquivos do plugin podem mudar.
 | Stubs da API · https://github.com/SketchUp/ruby-api-stubs | evento | `pages/ReleaseNotes.md` | ruby-sketchup.md |
 | Fórum de desenvolvedores · https://forums.sketchup.com/c/developers/ruby-api | trimestral | anúncios oficiais (tópicos da equipe SketchUp), não opiniões | ruby-sketchup.md |
 | Política de carregamento de extensões · https://help.sketchup.com/en/extensions-loading-policy | evento | mudança que impeça a ponte de carregar | instalacao.md |
+| Conector SketchUp para Claude (Trimble) · https://sketchup.trimble.com/en/blog/article/sketchup-claude-connector e https://help.sketchup.com/en/sketchup-claude-connector | trimestral | Em 05/11/2026 ele gera modelo novo na nuvem a partir de texto ou imagem, para baixar o .skp, sem edição do modelo aberto e sem extensões. **Reavaliar a ponte** se passar a editar o SketchUp desktop aberto, abrir .skp existente ou acionar extensões (UpMobb). | sketchup-ponte, modelar-movel |
+| Testes públicos de IA modelando no SketchUp (vídeos de canais de SketchUp, posts de arquitetos) | trimestral | Só como pista: modos de falha (medida, orientação, forma orgânica) a testar aqui. Origem em `historico-evolucao.md` | modelar-movel |
 
 ## UpMobb
 

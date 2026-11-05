@@ -15,6 +15,8 @@ when_to_use: >-
 
 O SketchUp roda Ruby na thread principal. A ponte é uma extensão (Claude Ponte) que, a cada 0,25 s, pega scripts `.rb` numa pasta local, executa e devolve um JSON com resultado, saída de texto, erro e se o modelo ficou com alterações não salvas. Não há rede envolvida. Cada SketchUp aberto tem a sua fila (por PID).
 
+Não confunda com o **conector SketchUp do Claude** (Trimble, ferramentas como build model e save model). Ele monta um arquivo novo num SketchUp na nuvem, sem ligação com o SketchUp aberto e sem UpMobb. Para trabalho da Art MDF, use esta ponte; o conector só serve quando o usuário pedir explicitamente um estudo rápido (regra em `modelar-movel`).
+
 Comando base (chamado de **SK** no resto do plugin):
 
 ```

@@ -41,6 +41,18 @@ Monte esta ficha antes de tocar no SketchUp. Preencha o que veio; complete o res
 
 Quando o móvel é para um cliente final novo (não um ajuste técnico), complete também a **ficha do cliente**, que orienta acabamento, puxador e apresentação: `references/briefing-cliente.md`.
 
+### Pedido a partir de foto, planta ou PDF
+
+A IA erra medida lida de imagem. Em teste público de modelagem a partir de um PDF de obra (07/2026), o resultado acertou forma, materiais e aberturas, mas errou a medida de quase tudo o que foi conferido. Por isso, antes de modelar, monte uma **tabela de cotas** com a origem de cada número:
+
+| Origem | Como tratar |
+|---|---|
+| Cota escrita no desenho | dado; transcreva exato, com a unidade do desenho |
+| Medida proporcional na imagem, a partir de uma cota conhecida | suposição; marque "(estimado)" |
+| Sem cota e sem referência | não estime: pergunte |
+
+Mostre a tabela junto da ficha. Foto do ambiente sem trena não define vão: peça a medida da obra. Na conferência (seção 4), confira cada linha da tabela contra o modelo, uma a uma.
+
 Pergunte só o que muda o projeto e não dá para supor com segurança (ex.: medida do vão, tipo de porta). No máximo uma rodada de perguntas, agrupadas. O usuário fala por voz: interprete termos parecidos ("OpenMob" = UpMobb).
 
 ## 2. Preparar o arquivo
@@ -57,6 +69,18 @@ Pergunte só o que muda o projeto e não dá para supor com segurança (ex.: med
 3. Insira e configure as medidas pelo Configurador (`${CLAUDE_PLUGIN_ROOT}/skills/upmobb/references/operacoes.md`). Medidas externas = vão menos folgas de instalação (`references/padroes-construcao.md`, seção Instalação).
 4. Composição interna, frentes, puxadores, ferragens e cores pelo próprio UpMobb.
 5. Não existe módulo que sirva? Escolha o mais próximo e adapte com a skill `personalizar-modulo`. Geometria crua só para estudo, nunca para produção sem avisar que ela não entra em listas e usinagem.
+6. O que não é marcenaria (cadeira, poltrona, eletrodoméstico, louça, decoração) não se modela à mão: forma orgânica gerada por IA sai grosseira. Use, nesta ordem:
+   - componente pronto da biblioteca do UpMobb;
+   - componente do 3D Warehouse, com OK do usuário;
+   - caixa simples com as medidas reais do manual (o eletro define nicho e folga, a forma não importa). Ponha na camada "Ambiente".
+
+**Conector SketchUp do Claude (Trimble).** Se as ferramentas desse conector aparecerem na sessão (como build model e save model), não as use para móvel da Art MDF:
+- elas criam um modelo novo num SketchUp na nuvem;
+- não tocam no SketchUp aberto;
+- não usam a biblioteca do UpMobb;
+- o resultado não entra em listas, orçamento nem usinagem.
+
+O caminho é sempre a ponte (ou a tela). Só use o conector se o usuário pedir explicitamente um estudo rápido de volume. Nesse caso, entregue como estudo, nunca como projeto.
 
 Trabalhe em etapas pequenas, conferindo entre elas. Cada alteração por script dentro de `operacao('...')`.
 
@@ -64,7 +88,7 @@ Trabalhe em etapas pequenas, conferindo entre elas. Cada alteração por script 
 
 Siga `references/checklist.md`. Resumo:
 
-1. **Medidas:** externas batem com o vão menos folgas; nenhuma peça com medida estranha (0, negativa, maior que a chapa).
+1. **Medidas:** externas batem com o vão menos folgas; nenhuma peça com medida estranha (0, negativa, maior que a chapa). Pedido veio de imagem ou planta: cada linha da tabela de cotas conferida no modelo.
 2. **Construção:** espessuras certas por peça, frentes com folga, gavetas cabendo com a corrediça, fundo encaixado, prateleiras com folga.
 3. **Usabilidade:** portas abrem sem bater em parede, puxador, outro móvel; gavetas abrem; alturas ergonômicas (`references/ergonomia.md`).
 4. **UpMobb:** Configurador mostra os valores reais; console sem erro novo; divergências sem item novo em relação ao módulo original.

@@ -6,9 +6,9 @@ Como instalar, organizar e usar o plugin que leva o Claude Code ao SketchUp e ao
 
 | | |
 |---|---|
-| Plugin | artmdf-sketchup 1.0.2 |
+| Plugin | artmdf-sketchup 1.0.3 |
 | Repositório | orbecmc-art/artmdf_plugin |
-| Versão do guia | 01/11/2026 |
+| Versão do guia | 05/11/2026 |
 
 ---
 
@@ -176,6 +176,12 @@ Medida do vão, interferências e acabamento evitam uma rodada de perguntas.
 > "Faz um armário bonito."
 
 O Claude vai perguntar medidas e uso antes de abrir o SketchUp. Ele só faz uma rodada de perguntas, agrupadas.
+
+**Pedido com foto, planta ou PDF**
+
+Mande a planta com as cotas escritas. O Claude monta uma tabela com cada medida e de onde ela veio (escrita no desenho, estimada ou a confirmar) e confere linha por linha no fim. Foto do ambiente sem medida não define o vão: ele vai pedir a medida da obra.
+
+> Conector SketchUp do Claude: se a conta tiver o conector oficial da Trimble ligado, ele não é usado nos projetos da Art MDF. Ele cria um modelo novo na nuvem, sem a biblioteca do UpMobb, e não entra em orçamento nem usinagem. O plugin trabalha sempre no SketchUp aberto no computador.
 
 ### O que acontece depois do pedido
 
