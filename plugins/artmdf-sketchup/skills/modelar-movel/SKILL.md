@@ -60,7 +60,7 @@ Pergunte só o que muda o projeto e não dá para supor com segurança (ex.: med
 1. `SK status` e `SK eval "info_modelo"`. Veja título, se há alterações pendentes e o que já existe.
 2. Um móvel por arquivo quando for para produção (as exportações valem para o modelo inteiro). Ambiente completo com vários móveis é estudo de apresentação; produção sai de arquivos separados.
 3. Se for trabalhar sobre um modelo que o usuário deixou aberto e sem salvar, **não feche nem substitua**: pergunte. Se precisar abrir outro, salve o atual como backup primeiro (com OK).
-4. Ambiente, quando pedido: paredes com `parede(...)` na camada "Ambiente", piso como referência Z = 0. O móvel encosta nas faces internas das paredes.
+4. Ambiente, quando pedido: pelo Construtor do UpMobb, com a skill `upmobb-criar-ambiente-paredes-janelas-portas` (paredes, aberturas e pontos de água, luz e gás antes dos móveis). Sem acesso à interface, paredes com `parede(...)` na camada "Ambiente", piso como referência Z = 0. O móvel encosta nas faces internas das paredes.
 
 ## 3. Montar a partir da biblioteca
 

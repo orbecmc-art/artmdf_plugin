@@ -55,7 +55,7 @@ Detalhe de uma peça: `SCX -Arquivo "<caminho>" -Peca "Porta Esquerda"`.
 
 ## 4. Plano de corte
 
-Exportar pelo painel de ações. Bloqueou pedindo Detalhes do projeto → pedir os dados ao usuário. Gerado → confirmar arquivo novo na pasta e informar o caminho.
+Plano de corte no Otimizador web (JSON, lote, vínculo de materiais, otimização, etiquetas): skill `upmobb-exportar-otimizador`. Exportar pelo painel de ações. Bloqueou pedindo Detalhes do projeto → pedir os dados ao usuário. Gerado → confirmar arquivo novo na pasta e informar o caminho.
 
 ## 5. Itens a comprar
 

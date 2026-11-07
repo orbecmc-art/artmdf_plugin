@@ -6,9 +6,9 @@ Como instalar, organizar e usar o plugin que leva o Claude Code ao SketchUp e ao
 
 | | |
 |---|---|
-| Plugin | artmdf-sketchup 1.0.3 |
+| Plugin | artmdf-sketchup 1.1.0 |
 | Repositório | orbecmc-art/artmdf_plugin |
-| Versão do guia | 05/11/2026 |
+| Versão do guia | 07/11/2026 |
 
 ---
 
@@ -16,7 +16,7 @@ Como instalar, organizar e usar o plugin que leva o Claude Code ao SketchUp e ao
 
 Você descreve o móvel em português, por texto ou voz. O Claude abre o SketchUp, monta pela biblioteca do UpMobb, confere medida por medida e mostra o resultado antes de salvar.
 
-- **9 skills** que entram sozinhas conforme o pedido
+- **16 skills** que entram sozinhas conforme o pedido
 - **3 jeitos** de falar com o SketchUp: extensão, Console Ruby ou tela
 - **1 pasta** no computador com projetos e memória do plugin
 
@@ -136,6 +136,13 @@ Ninguém precisa chamar skill pelo nome. O Claude lê o pedido e carrega a skill
 | "Deixa o recorte dinâmico com a altura da pega" | personalizar-modulo |
 | "Exporta a usinagem e confere com a de ontem" | exportar-producao |
 | "Apareceu item sem cadastro, cadastra pra mim" | upmobb-cadastrar-itens-faltantes |
+| "Como faz o esboço de caixa no UpMobb?" | upmobb-curso |
+| "Começa o ambiente: paredes, janela e pontos de água" | upmobb-criar-ambiente-paredes-janelas-portas |
+| "Grava na minha biblioteca dentro de agregados" | upmobb-gravar-agregado |
+| "Regrava o puxador cava na biblioteca" | upmobb-atualizar-componente-biblioteca |
+| "Libera o módulo novo para os projetistas" | upmobb-liberar-modulo |
+| "Vamos mexer na precificação" | upmobb-preparar-insumos-precificacao |
+| "Manda para o otimizador e gera o lote" | upmobb-exportar-otimizador |
 | "Gera o projeto executivo em PDF" | documentar-projeto |
 | "Anota isso: frente com RM416 é 18 mm" | evoluir-plugin |
 
@@ -145,7 +152,7 @@ Para forçar uma skill, digite `/` e o nome, por exemplo `/artmdf-sketchup:docum
 
 ---
 
-## 5. As 9 skills
+## 5. As 16 skills
 
 | Skill | O que faz |
 |---|---|
@@ -156,6 +163,13 @@ Para forçar uma skill, digite `/` e o nome, por exemplo `/artmdf-sketchup:docum
 | **personalizar-modulo** | Quando a biblioteca não atende: opção nova no Configurador, recorte visual dinâmico, correção de módulo, com teste de ida e volta. |
 | **exportar-producao** | Divergências, usinagem .scx comparada com a anterior, plano de corte e itens a comprar. |
 | **upmobb-cadastrar-itens-faltantes** | Cadastra em Insumos, no painel web do UpMobb, os itens da lista de elementos sem cadastro: confere se já existem, mostra a lista para aprovação, grava e regera a lista até o aviso sumir. |
+| **upmobb-curso** | Passo a passo da interface do UpMobb (resumo do curso Execução Completa Upmobb): onde fica cada botão, a ordem do projeto e o checklist do verificador de divergências. |
+| **upmobb-criar-ambiente-paredes-janelas-portas** | Ambiente novo: detalhes do projeto, paredes no Construtor, janelas, portas e pontos de água, luz e gás, conferidos contra a tabela de cotas. |
+| **upmobb-gravar-agregado** | Grava componente novo como Agregado na biblioteca, no grupo certo, e testa com a mira azul. Só envia com OK. |
+| **upmobb-atualizar-componente-biblioteca** | Atualiza peça já gravada na biblioteca (Recarregar componente ou Redesenhar). |
+| **upmobb-liberar-modulo** | Libera módulo novo para os projetistas: ambientes, descrição abreviada e status Básico. |
+| **upmobb-preparar-insumos-precificacao** | Começo da precificação: insumos ativos e inativos na aba Insumos, sem mexer em preço. |
+| **upmobb-exportar-otimizador** | Leva o projeto ao Otimizador: JSON, lote, vínculo de materiais, otimização, plano de corte e etiquetas. |
 | **documentar-projeto** | Cenas, cotas, imagens ilustrativas para o cliente, vídeo curto em validação, projeto executivo em PDF e lista em Excel. |
 | **evoluir-plugin** | Registra o que a equipe ensina, revisa fontes externas e transforma tudo em memória local na hora e em versão nova do plugin. |
 

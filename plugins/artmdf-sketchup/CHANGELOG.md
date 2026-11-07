@@ -1,5 +1,18 @@
 # Changelog · artmdf-sketchup
 
+## 1.1.0 · 07/11/2026
+
+Skills criadas pela equipe entre 01 e 07/11/2026 (na conta do Claude, no projeto e no pacote para publicar) passam a fazer parte do plugin:
+
+- `upmobb-curso`: o processo completo do UpMobb na interface, com checklist do verificador, armadilhas e notas aula por aula em `references/aulas.md`. Origem: curso "Execução Completa Upmobb" (Rafael Grossl, aulas 02 a 14) e vídeo "Cozinha em 20 minutos". A skill `upmobb` aponta para ela. Caso de teste `evals/curso-passo-a-passo`.
+- `upmobb-criar-ambiente-paredes-janelas-portas`: ambiente novo com paredes, aberturas e pontos de hidráulica, elétrica e gás.
+- `upmobb-gravar-agregado`: gravar componente novo como Agregado na biblioteca. Une as skills `upmobb-gravar-agregado`, `upmobb-salvar-agregado-biblioteca` e `upmobb-publicar-componente`.
+- `upmobb-atualizar-componente-biblioteca`: atualizar componente já gravado (Recarregar componente ou Redesenhar). Une `upmobb-recarregar-componente-biblioteca` e `upmobb-regravar-peca-biblioteca`.
+- `upmobb-liberar-modulo`: liberar módulo novo para os projetistas.
+- `upmobb-preparar-insumos-precificacao`: ponto de partida da precificação na aba Insumos.
+- `upmobb-exportar-otimizador`: exportar o projeto para o Otimizador de produção (lote e etiquetas).
+- Integração: `modelar-movel` aponta para a skill de ambiente; `exportar-producao` aponta para a do Otimizador; a skill de ambiente usa a tabela de cotas (1.0.3) e opera pela `sketchup-tela`.
+
 ## 1.0.3 · 05/11/2026
 
 Revisão de fontes externas: dois vídeos de teste do conector SketchUp para Claude (The SketchUp Essentials, 30/04/2026; The Architecture Grind, 02/05/2026), post sobre modelagem de casa a partir de PDF (12/07/2026) e páginas oficiais da Trimble.

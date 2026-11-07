@@ -13,6 +13,13 @@ Plugin que ensina o Claude Code a projetar móveis planejados no SketchUp da Art
 | `personalizar-modulo` | Quando a biblioteca não atende: opções novas, recortes visuais, correções de módulo |
 | `exportar-producao` | Divergências, usinagem .scx (com comparação), plano de corte, itens a comprar |
 | `upmobb-cadastrar-itens-faltantes` | Cadastra em Insumos (painel web do UpMobb) os itens da lista de elementos sem cadastro e confere até a lista zerar |
+| `upmobb-curso` | Passo a passo do UpMobb na interface (resumo do curso Execução Completa Upmobb) |
+| `upmobb-criar-ambiente-paredes-janelas-portas` | Ambiente novo: detalhes do projeto, paredes no Construtor, janelas, portas e pontos de água, luz e gás |
+| `upmobb-gravar-agregado` | Grava componente novo como Agregado ("gravar na minha biblioteca dentro de agregados"): Salvar Componente, grupo/subgrupo, imagem, Enviar e teste com a mira azul |
+| `upmobb-atualizar-componente-biblioteca` | Atualiza peça já gravada na biblioteca: UpMobb > Recarregar componente ou Componentes dinâmicos > Redesenhar |
+| `upmobb-liberar-modulo` | Libera módulo novo para os projetistas (ambientes, descrição, Desenvolvedor → Básico) |
+| `upmobb-preparar-insumos-precificacao` | Precificação: insumos ativos/inativos na aba Insumos, custos e markup |
+| `upmobb-exportar-otimizador` | Exporta o projeto para o Otimizador (JSON, lote, materiais, otimização, etiquetas) |
 | `documentar-projeto` | Cenas, cotas, imagens para o cliente, projeto executivo em PDF, CSV |
 | `evoluir-plugin` | Aprendizados da equipe + revisão de fontes externas → conhecimento local na hora e nova versão do plugin |
 

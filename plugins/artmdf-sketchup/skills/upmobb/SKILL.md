@@ -69,4 +69,5 @@ Mais detalhes e evidências: `references/conhecimento-validado.md`.
 - `references/inspecao.md`: scripts prontos, só de leitura, para mapear um módulo ou o projeto inteiro.
 - `references/operacoes.md`: inserir, configurar, aplicar, divergências e exportações, passo a passo.
 - `references/conhecimento-validado.md`: tudo que já foi testado na Art MDF, com data e evidência.
+- Skill `upmobb-curso`: passo a passo da interface (onde fica cada botão, ordem do projeto), resumo do curso Execução Completa Upmobb.
 - `${user_config.pasta_trabalho}/_claude/upmobb-mapa.md`: o mapa vivo da casa (leia se existir).
